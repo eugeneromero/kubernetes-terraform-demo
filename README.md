@@ -37,7 +37,7 @@ terraform init
 ```
 Get an overview of what will be created:
 ```
-terraform plan --out=terraform.tfplan
+terraform plan --var="azure_region=[AZURE-REGION]" --out=terraform.tfplan
 ```
 Finally, deploy the infrastructure:
 ```
@@ -60,7 +60,7 @@ terraform init
 ```
 Get an overview of what will be created:
 ```
-terraform plan --var="app_title=fresh demo app" --var="dns_label=unique-dns-record" --out=terraform.tfplan
+terraform plan --var="app_title=[TEXT TO SHOW ON APP]" --var="dns_label=[UNIQUE-DNS-NAME]" --out=terraform.tfplan
 ```
 Finally, deploy the infrastructure:
 ```
@@ -72,10 +72,11 @@ To find the app's URL, run:
 ```
 terraform output
 ```
-If anything is not running, check the ingress container's logs in the `ingress-nginx` namespace, and the app container's logs in the `app` namespace.
+For troubleshooting, check the ingress container's logs in the `ingress-nginx` namespace, and the app container's logs in the `app` namespace.
 
 # Cleanup
 The easiest way to clean up all the created resources is by deleting the Azure resource group (adjust naming if needed):
 ```
 az group delete -n "terraform-kubernetes-demo"
 ```
+To perform a new test, all Terraform files in each directory can be cleaned by running the `tr` alias found in the Docker image.

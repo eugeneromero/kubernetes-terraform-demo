@@ -1,4 +1,4 @@
 resource "azurerm_resource_group" "rg" {
   name     = "terraform-kubernetes-demo"
-  location = "norwayeast"
+  location = var.azure_region
 }
