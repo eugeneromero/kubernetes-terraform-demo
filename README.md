@@ -29,7 +29,7 @@ az login
 ## Deploy infrastructure repository
 Enter the infrastructure directory:
 ```
-cd 1-Infrastructure/
+cd /code/1-Infrastructure/
 ```
 Set up Terraform:
 ```
@@ -43,7 +43,7 @@ Finally, deploy the infrastructure:
 ```
 terraform apply terraform.tfplan
 ```
-This will create the resource group and Kubernetes cluster (took about ~4 mins in my testing).
+This will create the resource group and Kubernetes cluster (should take about ~4 minutes).
 
 ## Deploy application and Kubernetes configuration
 Once the cluster is in place, set up the Kubernetes credentials locally (adjust the values as needed if they have been changed in the Terraform code):
@@ -52,7 +52,7 @@ az aks get-credentials --resource-group terraform-kubernetes-demo --name my-clus
 ```
 Enter the configuration directory:
 ```
-cd 2-Configuration/
+cd /code/2-Configuration/
 ```
 Set up Terraform:
 ```
@@ -66,6 +66,13 @@ Finally, deploy the infrastructure:
 ```
 terraform apply terraform.tfplan
 ```
+
+# Checks
+To find the app's URL, run:
+```
+terraform output
+```
+If anything is not running, check the ingress container's logs in the `ingress-nginx` namespace, and the app container's logs in the `app` namespace.
 
 # Cleanup
 The easiest way to clean up all the created resources is by deleting the Azure resource group (adjust naming if needed):
