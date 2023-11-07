@@ -31,13 +31,19 @@ Enter the infrastructure directory:
 ```
 cd 1-Infrastructure/
 ```
-Deploy the infrastructure with Terraform:
+Set up Terraform:
 ```
 terraform init
+```
+Get an overview of what will be created:
+```
 terraform plan --out=terraform.tfplan
+```
+Finally, deploy the infrastructure:
+```
 terraform apply terraform.tfplan
 ```
-This will create the resource group and Kubernetes cluster (~4 mins).
+This will create the resource group and Kubernetes cluster (took about ~4 mins in my testing).
 
 ## Deploy application and Kubernetes configuration
 Once the cluster is in place, set up the Kubernetes credentials locally (adjust the values as needed if they have been changed in the Terraform code):
@@ -48,10 +54,16 @@ Enter the configuration directory:
 ```
 cd 2-Configuration/
 ```
-Deploy the app and configuration with Terraform:
+Set up Terraform:
 ```
 terraform init
+```
+Get an overview of what will be created:
+```
 terraform plan --var="app_title=fresh demo app" --var="dns_label=unique-dns-record" --out=terraform.tfplan
+```
+Finally, deploy the infrastructure:
+```
 terraform apply terraform.tfplan
 ```
 
