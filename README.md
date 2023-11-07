@@ -34,8 +34,8 @@ cd 1-Infrastructure/
 Deploy the infrastructure with Terraform:
 ```
 terraform init
-terraform plan
-terraform apply
+terraform plan --out=terraform.tfplan
+terraform apply terraform.tfplan
 ```
 This will create the resource group and Kubernetes cluster (~4 mins).
 
